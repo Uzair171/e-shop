@@ -1,6 +1,7 @@
 import { Categories } from "../assets/mockData";
 import heroSection from "../assets/images/hero-section.jpg";
-import InfoSection from "../components/InfoSection";
+import InfoSection from "../components/InfoSection.jsx";
+import CategorySection from "../components/CategorySection.jsx";
 
 export default function Home() {
   return (
@@ -45,6 +46,7 @@ export default function Home() {
       </div>
       <div>
         <InfoSection />
+        <CategorySection />
       </div>
     </div>
   );
