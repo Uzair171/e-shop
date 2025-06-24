@@ -1,11 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import emptyCart from "../assets/images/emptycart.jpg";
 import { FaTrashCan } from "react-icons/fa6";
+import Model from "../components/model.jsx";
+import ChangeAddress from "../components/changeAddress.jsx";
+import { removeItem } from "../redux/cartSlice.jsx";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
-  const [address] = React.useState("Main Street");
+  const [address, setAddress] = React.useState("Main Street");
+  const [isModelOpen, setIsModelOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   return (
     <div className="container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24">
@@ -64,7 +69,10 @@ export default function Cart() {
                       </p>
 
                       <div className="w-1/4 text-center">
-                        <button className="text-red-500 hover:text-red-700">
+                        <button
+                          className="text-red-500 hover:text-red-700"
+                          onClick={() => dispatch(removeItem(product.id))}
+                        >
                           <FaTrashCan />
                         </button>
                       </div>
@@ -88,9 +96,13 @@ export default function Cart() {
                   <p className="text-sm text-gray-600">{address}</p>
                 </div>
 
-                <button className="text-blue-600 hover:underline text-sm cursor-pointer">
+                <button
+                  className="text-blue-600 hover:underline text-sm cursor-pointer"
+                  onClick={() => setIsModelOpen(true)}
+                >
                   Change Address
                 </button>
+                {console.log(isModelOpen)}
               </div>
 
               <div className="mb-4 flex justify-between">
@@ -103,6 +115,14 @@ export default function Cart() {
               </button>
             </div>
           </div>
+          <Model isModelOpen={isModelOpen} setIsModelOpen={setIsModelOpen}>
+            <ChangeAddress
+              isModelOpen={isModelOpen}
+              setIsModelOpen={setIsModelOpen}
+              address={address}
+              setAddress={setAddress}
+            />
+          </Model>
         </div>
       ) : (
         <div className="w-full h-[50vh] flex flex-col items-center justify-center mt-20 mb-20">
