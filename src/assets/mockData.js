@@ -18,11 +18,11 @@ export const Categories = [
   "Automotive",
 ];
 
-export const Products = [
+export const allProducts = [
   {
     id: 1,
     name: "Brush",
-    price: 19.99,
+    price: 10.99,
     image: brush,
   },
   {
@@ -69,14 +69,14 @@ export const Products = [
   },
   {
     id: 9,
-    name: "refrigerator",
+    name: "Refrigerator",
     price: 399.99,
     image: refrigerator,
   },
   {
     id: 10,
     name: "Mop",
-    price: 99.99,
+    price: 15.99,
     image: mop,
   },
 ];

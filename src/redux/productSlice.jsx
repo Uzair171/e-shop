@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Products } from "../assets/mockData";
 
 const initialState = {
-  Products: [],
+  products: [],
 };
 
 const productSlice = createSlice({
@@ -10,7 +9,7 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     setProducts(state, action) {
-      state.Products = action.payload;
+      state.products = action.payload;
     },
   },
 });

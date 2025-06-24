@@ -2,8 +2,20 @@ import { Categories } from "../assets/mockData";
 import heroSection from "../assets/images/hero-section.jpg";
 import InfoSection from "../components/InfoSection.jsx";
 import CategorySection from "../components/CategorySection.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { allProducts } from "../assets/mockData";
+import { setProducts } from "../redux/productSlice.jsx";
+import ProductCard from "../components/productCard.jsx";
+import Shop from "./Shop.jsx";
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product);
+  useEffect(() => {
+    dispatch(setProducts(allProducts));
+  }, []);
+
   return (
     <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
       <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
@@ -48,6 +60,15 @@ export default function Home() {
         <InfoSection />
         <CategorySection />
       </div>
+      <div>
+        <h2 className="text-2xl font-bold mb-6 text-center ">Top Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cole-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {products.products.slice(0, 5).map((popularProduct, index) => {
+            return <ProductCard product={popularProduct} key={index} />;
+          })}
+        </div>
+      </div>
+      <Shop />
     </div>
   );
 }

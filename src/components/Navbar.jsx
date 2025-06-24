@@ -18,9 +18,11 @@ export default function Navbar() {
             <FaSearch className="absolute top-3 right-3 text-red-500" />
           </form>
         </div>
-        <div>
-          <Link className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
+          <Link to={"/cart"}>
             <FaShoppingCart className="text-lg" />
+          </Link>
+          <Link>
             <button className="hidden md:block">Login/Register</button>
             <button className="block md:hidden">
               <FaUser />
@@ -32,7 +34,7 @@ export default function Navbar() {
         <Link to={"/"} className="hover:underline">
           Home
         </Link>
-        <Link to={"/"} className="hover:underline">
+        <Link to={"/shop"} className="hover:underline">
           Shop
         </Link>
         <Link to={"/"} className="hover:underline">
