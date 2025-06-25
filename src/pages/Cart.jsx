@@ -4,19 +4,34 @@ import emptyCart from "../assets/images/emptycart.jpg";
 import { FaTrashCan } from "react-icons/fa6";
 import Model from "../components/model.jsx";
 import ChangeAddress from "../components/changeAddress.jsx";
-import { removeItem } from "../redux/cartSlice.jsx";
+import {
+  minusone,
+  plusone,
+  removeItem,
+  clearCart,
+} from "../redux/cartSlice.jsx";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
   const [address, setAddress] = React.useState("Main Street");
   const [isModelOpen, setIsModelOpen] = React.useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24">
       {cart.products.length > 0 ? (
         <div>
-          <h3 className="text-2xl font-semibold mb-4">Shopping Cart</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-2xl font-semibold">Shopping Cart</h3>
+            <button
+              onClick={() => dispatch(clearCart())}
+              className="text-sm bg-gray-200 text-red-600 px-3 py-1 rounded hover:bg-gray-300 transition font-medium"
+            >
+              Clear Cart
+            </button>
+          </div>
 
           <div className="flex flex-col md:flex-row justify-between space-x-10 mt-8">
             <div className="md:w-2/3">
@@ -53,13 +68,19 @@ export default function Cart() {
                       <p className="w-1/4 text-center">{product.price}$</p>
 
                       <div className="w-1/4 flex items-center justify-center gap-2">
-                        <button className="bg-red-500 text-white rounded px-2 text-lg hover:bg-red-600 transition">
+                        <button
+                          className="bg-red-500 text-white rounded px-2 text-lg hover:bg-red-600 transition"
+                          onClick={() => dispatch(minusone(product.id))}
+                        >
                           −
                         </button>
                         <p className="text-lg font-medium px-2 py-0.5 border rounded bg-white text-center shadow-sm min-w-[36px]">
                           {product.quantity}
                         </p>
-                        <button className="bg-red-500 text-white rounded px-2 text-lg hover:bg-red-600 transition">
+                        <button
+                          className="bg-red-500 text-white rounded px-2 text-lg hover:bg-red-600 transition"
+                          onClick={() => dispatch(plusone(product.id))}
+                        >
                           +
                         </button>
                       </div>
@@ -102,7 +123,6 @@ export default function Cart() {
                 >
                   Change Address
                 </button>
-                {console.log(isModelOpen)}
               </div>
 
               <div className="mb-4 flex justify-between">
@@ -110,11 +130,15 @@ export default function Cart() {
                 <span>{cart.totalprice.toFixed(2)}$</span>
               </div>
 
-              <button className="cursor-pointer w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition">
+              <button
+                className="cursor-pointer w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition mb-2"
+                onClick={() => navigate("/checkout")}
+              >
                 Proceed To Checkout
               </button>
             </div>
           </div>
+
           <Model isModelOpen={isModelOpen} setIsModelOpen={setIsModelOpen}>
             <ChangeAddress
               isModelOpen={isModelOpen}

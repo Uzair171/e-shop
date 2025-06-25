@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import Shop from "./pages/Shop.jsx";
 import Footer from "./components/Footer.jsx";
 import Cart from "./pages/Cart.jsx";
+import CheckOut from "./pages/CheckOut.jsx";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path={"/"} element={<Home />} />
         <Route path={"/shop"} element={<Shop />} />
         <Route path={"/cart"} element={<Cart />} />
+        <Route path={"/checkout"} element={<CheckOut />} />
       </Routes>
       <Footer />
     </BrowserRouter>
