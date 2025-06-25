@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Model from "./model";
 import Login from "./login";
 import Register from "./Register";
+import { setSearchQuery } from "../redux/searchslice";
 
 export default function Navbar() {
   const items = useSelector((state) => state.cart.products);
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const openSignUp = () => {
     setIsLogin(false);
@@ -27,13 +31,12 @@ export default function Navbar() {
     setIsModelOpen(false);
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      navigate(`/product?q=${encodeURIComponent(searchTerm.trim())}`);
-      setSearchTerm("");
+  useEffect(() => {
+    dispatch(setSearchQuery(searchTerm));
+    if (searchTerm.trim() && location.pathname !== "/product") {
+      navigate("/product");
     }
-  };
+  }, [searchTerm, dispatch, navigate, location.pathname]);
 
   return (
     <nav className="bg-white shadow-sm relative z-50">
@@ -43,10 +46,7 @@ export default function Navbar() {
         </div>
 
         {/* SEARCH */}
-        <form
-          onSubmit={handleSearchSubmit}
-          className="relative flex-1 mx-4 flex"
-        >
+        <div className="relative flex-1 mx-4">
           <input
             type="text"
             placeholder="Search Products"
@@ -54,10 +54,8 @@ export default function Navbar() {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full border py-2 px-4"
           />
-          <button type="submit">
-            <FaSearch className="absolute top-3 right-3 text-red-500 cursor-pointer" />
-          </button>
-        </form>
+          <FaSearch className="absolute top-3 right-3 text-red-500" />
+        </div>
 
         {/* ICONS */}
         <div className="flex items-center space-x-4">

@@ -1,10 +1,8 @@
-import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProductCard from "../components/productCard";
 
 export default function ProductDetails() {
-  const location = useLocation();
-  const query = new URLSearchParams(location.search).get("q") || "";
+  const query = useSelector((state) => state.search.query);
   const allProducts = useSelector((state) => state.product.products);
 
   const filteredProducts = allProducts.filter(
@@ -16,7 +14,8 @@ export default function ProductDetails() {
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <h1 className="text-2xl font-semibold mb-4">
-        Search Results for: <span className="text-red-600">"{query}"</span>
+        Search Results for:{" "}
+        <span className="text-red-600">"{query || "Nothing"}"</span>
       </h1>
 
       {filteredProducts.length === 0 ? (
