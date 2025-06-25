@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../redux/productSlice";
 import { allProducts } from "../assets/mockData";
 import { useEffect } from "react";
-import ProductCard from "../components/productCard";
+import ProductCard from "../components/productCard.jsx";
 
 export default function Shop() {
   const dispatch = useDispatch();
