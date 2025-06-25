@@ -8,6 +8,7 @@ import { allProducts } from "../assets/mockData";
 import { setProducts } from "../redux/productSlice.jsx";
 import ProductCard from "../components/productCard.jsx";
 import Shop from "./Shop.jsx";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -50,9 +51,11 @@ export default function Home() {
             <p className="text-sm mt-2.5 font-bold text-gray-800">
               MILLION+ PRODUCTS
             </p>
-            <button className="bg-red-600 px-8 py-1.5 text-white mt-4 hover:bg-red-700 transform transition-transform duration-300 hover:scale-105 cursor-pointer">
-              SHOP NOW
-            </button>
+            <Link to={"/shop"}>
+              <button className="bg-red-600 px-8 py-1.5 text-white mt-4 hover:bg-red-700 transform transition-transform duration-300 hover:scale-105 cursor-pointer">
+                SHOP NOW
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function ProductDetails() {
     <div className="p-6 max-w-7xl mx-auto">
       <h1 className="text-2xl font-semibold mb-4">
         Search Results for:{" "}
-        <span className="text-red-600">"{query || "Nothing"}"</span>
+        <span className="text-red-600">"{query || "All Products"}"</span>
       </h1>
 
       {filteredProducts.length === 0 ? (
