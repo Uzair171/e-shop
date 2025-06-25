@@ -26,6 +26,12 @@ export const allProducts = [
     image: brush,
   },
   {
+    id: 11,
+    name: "Brush 3",
+    price: 10.99,
+    image: brush,
+  },
+  {
     id: 2,
     name: "Bottel",
     price: 29.99,
