@@ -52,7 +52,10 @@ export default function Footer() {
               placeholder="Enter Email"
               className="w-full p-2 rounded-l-lg bg-gray-800 border border-gray-600"
             />
-            <button className="bg-red-600 text-white px-4 py-2 rounded-r-lg border">
+            <button
+              className="bg-red-600 text-white px-4 py-2 rounded-r-lg border cursor-pointer"
+              onClick={(e) => e.preventDefault()}
+            >
               Subscribe
             </button>
           </form>
