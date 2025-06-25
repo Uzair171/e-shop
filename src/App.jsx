@@ -9,7 +9,7 @@ import { useState } from "react";
 import OrderConfirmation from "./pages/OrderConfirmation.jsx";
 
 export default function App() {
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState(null);
   return (
     <BrowserRouter>
       <Navbar />

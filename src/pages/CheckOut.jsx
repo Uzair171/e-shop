@@ -1,10 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FaAngleDown } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { clearCart } from "../redux/cartSlice";
 
 export default function CheckOut({ setOrder }) {
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [shippingInfo, setShippingInfo] = React.useState({
@@ -48,9 +50,14 @@ export default function CheckOut({ setOrder }) {
         shippingInfo,
         billingInfo,
         paymentMethod,
-        totalPrice: cart.totalPrice,
+        totalPrice: Number(
+          (
+            cart.products.reduce((acc, p) => acc + p.price * p.quantity, 0) + 5
+          ).toFixed(2)
+        ),
       };
       setOrder(newOrder);
+      dispatch(clearCart()); // ✅ Clear the cart
       navigate("./order-confirmation");
     } else {
       setShowError(true);
@@ -270,7 +277,7 @@ export default function CheckOut({ setOrder }) {
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-semibold">
-                    ${product.price * product.quantity}
+                    ${(product.price * product.quantity).toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -282,15 +289,14 @@ export default function CheckOut({ setOrder }) {
               <span>Subtotal:</span>
               <span>
                 $
-                {cart.products.reduce(
-                  (acc, p) => acc + p.price * p.quantity,
-                  0
-                )}
+                {cart.products
+                  .reduce((acc, p) => acc + p.price * p.quantity, 0)
+                  .toFixed(2)}
               </span>
             </p>
             <p className="flex justify-between">
               <span>Shipping:</span>
-              <span>$5</span>
+              <span>$5.00</span>
             </p>
             <p className="flex justify-between font-semibold">
               <span>Total:</span>
