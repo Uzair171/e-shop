@@ -6,6 +6,7 @@ import Footer from "./components/Footer.jsx";
 import Cart from "./pages/Cart.jsx";
 import CheckOut from "./pages/CheckOut.jsx";
 import { useState } from "react";
+import OrderConfirmation from "./pages/OrderConfirmation.jsx";
 
 export default function App() {
   const [order, setOrder] = useState([]);
@@ -17,6 +18,10 @@ export default function App() {
         <Route path={"/shop"} element={<Shop />} />
         <Route path={"/cart"} element={<Cart />} />
         <Route path={"/checkout"} element={<CheckOut setOrder={setOrder} />} />
+        <Route
+          path={"/checkout/order-confirmation"}
+          element={<OrderConfirmation order={order} />}
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
