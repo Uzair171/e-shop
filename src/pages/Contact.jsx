@@ -1,6 +1,24 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "../redux/loadingSlice";
+import Loader from "../components/Loader";
+
 export default function Contact() {
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading.global);
+
+  useEffect(() => {
+    dispatch(setLoading(true));
+    const timer = setTimeout(() => {
+      dispatch(setLoading(false));
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [dispatch]);
+
+  if (loading) return <Loader />;
+
   return (
-    <div className="min-h-screen  py-12 px-6 md:px-20">
+    <div className="min-h-screen py-12 px-6 md:px-20">
       <div className="max-w-4xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">Contact Us</h1>
         <p className="text-gray-600 text-lg">
@@ -8,9 +26,7 @@ export default function Contact() {
           products, or our services — reach out to us anytime.
         </p>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-        {/* Contact Info */}
         <div className="bg-gray-100 p-6 rounded-lg shadow space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             Get in Touch
@@ -34,8 +50,6 @@ export default function Contact() {
             <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM</p>
           </div>
         </div>
-
-        {/* Contact Form */}
         <div className="bg-gray-100 p-6 rounded-lg shadow space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             Send a Message

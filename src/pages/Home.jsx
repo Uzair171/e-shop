@@ -27,7 +27,7 @@ export default function Home() {
     if (products.products.length > 0) {
       const timer = setTimeout(() => {
         dispatch(setLoading(false));
-      }, 1000);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [dispatch, products.products.length]);
