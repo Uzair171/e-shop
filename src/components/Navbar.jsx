@@ -3,7 +3,7 @@ import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Model from "./Model";
-import Login from "./login";
+import Login from "./Login.jsx";
 import Register from "./Register";
 import { setSearchQuery, clearSearchQuery } from "../redux/searchSlice";
 
