@@ -1,22 +1,39 @@
-import { Categories } from "../assets/mockData";
 import heroSection from "../assets/images/hero-section.jpg";
 import InfoSection from "../components/InfoSection.jsx";
 import CategorySection from "../components/CategorySection.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { allProducts } from "../assets/mockData";
-import { setProducts } from "../redux/productSlice.jsx";
+import Loader from "../components/Loader";
 import ProductCard from "../components/ProductCard.jsx";
 import Shop from "./Shop.jsx";
+
 import { Link } from "react-router-dom";
+import { setLoading } from "../redux/loadingSlice";
+import { Categories } from "../assets/mockData";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading.global);
   const products = useSelector((state) => state.product);
-  useEffect(() => {
-    dispatch(setProducts(allProducts));
-  }, []);
 
+  const hasStarted = useRef(false);
+
+  useEffect(() => {
+    if (!hasStarted.current) {
+      hasStarted.current = true;
+      dispatch(setLoading(true));
+    }
+
+    if (products.products.length > 0) {
+      const timer = setTimeout(() => {
+        dispatch(setLoading(false));
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [dispatch, products.products.length]);
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
       <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
@@ -71,7 +88,7 @@ export default function Home() {
           })}
         </div>
       </div>
-      <Shop />
+      <Shop isEmbedded={true} />
     </div>
   );
 }
