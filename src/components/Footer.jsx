@@ -2,7 +2,7 @@ import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { clearSearchQuery } from "../redux/searchslice";
+import { clearSearchQuery } from "../redux/searchSlice";
 
 export default function Footer() {
   const dispatch = useDispatch();
