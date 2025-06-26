@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Contact() {
   return (
     <div className="min-h-screen  py-12 px-6 md:px-20">
