@@ -27,5 +27,9 @@
 | Tailwind CSS    | Utility-first CSS Framework          |
 | Vite            | Development Server & Build Tool      |
 
+##  Future Work
+- Add individual product details 
+- Show products by Category
+- Use better techniques for more effiecent data usage 
 
 
