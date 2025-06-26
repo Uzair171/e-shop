@@ -20,11 +20,15 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="bg-white p-4 shadow rounded relative border transform transition-transform duration-300 hover:scale-105">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-48 object-contain mb-4"
-      />
+      {/* Image wrapper for consistent size */}
+      <div className="w-full h-48 mb-4 bg-gray-100 flex items-center justify-center overflow-hidden rounded">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       <h3 className="text-lg font-semibold">{product.name}</h3>
       <p className="text-gray-500">{product.price + "$"}</p>
 

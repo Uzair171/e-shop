@@ -61,10 +61,10 @@ export default function Footer() {
         <div>
           <h4 className="text-lg font-semibold">Follow us</h4>
           <div className="flex space-x-4 mt-4">
-            <FaFacebook className="hover:text-gray-400" />
-            <FaLinkedin className="hover:text-gray-400" />
-            <FaXTwitter className="hover:text-gray-400" />
-            <FaGithub className="hover:text-gray-400" />
+            <FaFacebook className="hover:text-gray-400 cursor-pointer" />
+            <FaLinkedin className="hover:text-gray-400 cursor-pointer" />
+            <FaXTwitter className="hover:text-gray-400 cursor-pointer" />
+            <FaGithub className="hover:text-gray-400 cursor-pointer" />
           </div>
           <form className="flex items-center justify-center mt-8">
             <input
@@ -73,7 +73,7 @@ export default function Footer() {
               className="w-full p-2 rounded-l-lg bg-gray-800 border border-gray-600"
             />
             <button
-              className="bg-red-600 text-white px-4 py-2 rounded-r-lg border cursor-pointer"
+              className="bg-red-600 text-white px-4 py-2 rounded-r-lg border cursor-pointer hover:bg-red-700"
               onClick={(e) => e.preventDefault()}
             >
               Subscribe

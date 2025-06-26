@@ -69,7 +69,7 @@ export default function Navbar() {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full border py-2 px-4"
           />
-          <FaSearch className="absolute top-3 right-3 text-red-500" />
+          <FaSearch className="absolute top-3 right-3 text-red-500 cursor-pointer" />
         </div>
 
         {/* ICONS */}
@@ -81,7 +81,7 @@ export default function Navbar() {
             }}
             className="relative"
           >
-            <FaShoppingCart className="text-lg" />
+            <FaShoppingCart className="text-lg cursor-pointer" />
             {items.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                 {items.length}
@@ -89,11 +89,14 @@ export default function Navbar() {
             )}
           </button>
 
-          <button className="hidden md:block" onClick={openLogin}>
+          <button
+            className="hidden md:block cursor-pointer"
+            onClick={openLogin}
+          >
             Login/Register
           </button>
 
-          <button className="block md:hidden">
+          <button className="block md:hidden cursor-pointer">
             <FaUser onClick={openLogin} />
           </button>
         </div>
