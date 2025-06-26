@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addtoCart } from "../redux/cartSlice";
-import { clearSearchQuery } from "../redux/searchslice";
+import { clearSearchQuery } from "../redux/searchSlice";
 import { useState } from "react";
 
 export default function ProductCard({ product }) {

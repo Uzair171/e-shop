@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import Model from "./model";
+import Model from "./Model";
 import Login from "./login";
 import Register from "./Register";
-import { setSearchQuery, clearSearchQuery } from "../redux/searchslice";
+import { setSearchQuery, clearSearchQuery } from "../redux/searchSlice";
 
 export default function Navbar() {
   const items = useSelector((state) => state.cart.products);

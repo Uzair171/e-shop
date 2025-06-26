@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import emptyCart from "../assets/images/emptycart.jpg";
 import { FaTrashCan } from "react-icons/fa6";
-import Model from "../components/model.jsx";
+import Model from "../components/Model.jsx";
 import ChangeAddress from "../components/changeAddress.jsx";
 import {
   minusone,

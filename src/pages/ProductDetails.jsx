@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import ProductCard from "../components/productCard";
+import ProductCard from "../components/ProductCard";
 
 export default function ProductDetails() {
   const query = useSelector((state) => state.search.query);

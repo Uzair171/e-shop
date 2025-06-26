@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { allProducts } from "../assets/mockData";
 import { setProducts } from "../redux/productSlice.jsx";
-import ProductCard from "../components/productCard.jsx";
+import ProductCard from "../components/ProductCard.jsx";
 import Shop from "./Shop.jsx";
 import { Link } from "react-router-dom";
 
